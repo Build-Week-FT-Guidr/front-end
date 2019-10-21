@@ -4,7 +4,7 @@ import * as Yup from "yup";
 // axiosWithAuth
 
 const Signup = props => {
-  // const { history } = props;
+  const { history } = props;
   return (
     <div className="signup-container">
       <h1>Sign Up</h1>
@@ -23,6 +23,10 @@ const Signup = props => {
             .required("Please confirm your password")
             .oneOf([Yup.ref("password"), null], "Passwords must match") //check that passwords match
         })}
+        onSubmit={values => {
+          console.log(values)
+          history.push('/profile')
+        }}
         render={({ errors, status, touched }) => (
           <Form className="signup-form">
             <Field type="text" name="name" placeholder="Name (First, Last)" />
