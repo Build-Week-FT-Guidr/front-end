@@ -21,7 +21,8 @@ const Signup = (props) => {
             name: Yup.string().required('Please enter your first and last name'), 
             email: Yup.string().required('Please enter your email'), // check for @ 
             password: Yup.string().required('Please enter a password'),
-            confirmPassword: Yup.string().required('Please confirm your password') //check that passwords match
+            confirmPassword: Yup.string().required('Please confirm your password')
+              .oneOf([Yup.ref('password'), null], 'Passwords must match') //check that passwords match
           })
         }
 
