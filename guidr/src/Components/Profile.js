@@ -97,7 +97,7 @@ const Profile = () => {
                     <img src="img"/>
                 </div>
                 <div className='guide-info-half'>
-                    <h3 className='profile-name'>Guide Name</h3>
+                    <h3 className='profile-name'>Guide  Name</h3>
                     <h4 className='profile-title'>title</h4>
                     <h4 className='profile-specialty'>specialty</h4>
                     <p>___ years of experience</p>
