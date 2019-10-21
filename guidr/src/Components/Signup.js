@@ -24,8 +24,8 @@ const Signup = props => {
             .oneOf([Yup.ref("password"), null], "Passwords must match") //check that passwords match
         })}
         onSubmit={values => {
-          console.log(values)
-          history.push('/profile')
+          console.log(values);
+          history.push("/profile");
         }}
         render={({ errors, status, touched }) => (
           <Form className="signup-form">
