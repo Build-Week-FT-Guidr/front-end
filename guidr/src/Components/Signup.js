@@ -6,6 +6,8 @@ import * as Yup from 'yup';
 const Signup = (props) => {
   const { history } = props;
   return (
+    <div className='signup-container'>
+      <h1>Sign Up</h1>
       <Formik 
         initialValues={{
           name: '',
@@ -37,9 +39,7 @@ const Signup = (props) => {
         }}
 
         render={({ errors, status, touched}) => (
-          <Form className='signup-form-container'>
-            <h2>Sign up</h2>
-              <div className='form-box'>
+          <Form className='signup-form'>
       
               <Field type='text'
               name='name'
@@ -71,33 +71,13 @@ const Signup = (props) => {
               
                   {/* form validation checks */}
               
-              </div>
             
           </Form>
-      )}
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      /> //end formik form
+          )
+       }
+      /> 
+    </div>
   )
 };
 

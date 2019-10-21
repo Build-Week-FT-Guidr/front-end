@@ -6,7 +6,7 @@ const Login = props => {
   const { history } = props;
   // Returns the form component and the error messages when the input field is touched and left empty, or just left empty
   return (
-    <div className="container">
+    <div className="login-container">
       <h1>Log In</h1>
       <Formik
         className="form-control"
@@ -20,7 +20,7 @@ const Login = props => {
           history.push("/profile");
         }}
         render={({ errors, status, touched }) => (
-          <Form>
+          <Form className='login-form'>
             <Field type="email" name="email" placeholder="E-mail" />
             {touched.email && errors.email && (
               <p className="error">{errors.email}</p>
