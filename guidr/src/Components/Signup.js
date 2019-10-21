@@ -22,7 +22,7 @@ const Signup = (props) => {
             confirmPassword: Yup.string().required('Please confirm your password') //check that passwords match
           })
         }
-        
+
         // onSubmit={values => {
         //   axiosWithAuth()
         //   .post('url', values)
@@ -32,8 +32,13 @@ const Signup = (props) => {
         //   .catch(err => console.log(err))
         // }}
 
+        onSubmit={values => {
+          console.log(values)
+        }}
+
         render={({ errors, status, touched}) => (
           <Form className='signup-form-container'>
+            <h2>Sign up</h2>
               <div className='form-box'>
       
               <Field type='text'
@@ -62,7 +67,7 @@ const Signup = (props) => {
               />
               {touched.confirmPassword && errors.confirmPassword && (<p>{errors.confirmPassword}</p>)}
 
-              <button type='submit'>Log in</button>
+              <button type='submit'>Sign up</button>
               
                   {/* form validation checks */}
               
