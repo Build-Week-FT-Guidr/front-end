@@ -3,10 +3,14 @@ import { Link } from "react-router-dom";
 
 const NavigationLinks = () => {
   return (
-    <div>
+    <div className='navigation-links'>
+      <h1>Guidr</h1>
+      <div className='links-container'>
       <Link to="">Home</Link>
       <Link to="login">Login</Link>
       <Link to="signup">Sign Up</Link>
+      </div>
+      
     </div>
   );
 };
