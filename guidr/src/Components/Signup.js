@@ -36,6 +36,7 @@ const Signup = (props) => {
           console.log(values)
         }}
 
+        
         render={({ errors, status, touched}) => (
           <Form className='signup-form-container'>
             <h2>Sign up</h2>
