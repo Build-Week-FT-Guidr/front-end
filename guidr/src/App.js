@@ -7,7 +7,8 @@ import Signup from "./Components/Signup";
 import NavigationLinks from "./Components/Navigation/NavigationLinks";
 import Footer from "./Components/Footer";
 import Profile from "./Components/Profile";
-// import TripCard from "./Components/TripCard";
+import TripCard from "./Components/TripCard";
+import NewTrip from "./Components/NewTrip";
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
       <Route path="/login" component={Login} />
       <Route path="/signup" component={Signup} />
       <Route path="/profile" component={Profile} />
-      {/* <Route path="/trip" component={TripCard} /> */}
+      <Route path="/trip" component={TripCard} />
+      <Route path="/newtrip" component={NewTrip} />
       <Footer />
     </div>
   );

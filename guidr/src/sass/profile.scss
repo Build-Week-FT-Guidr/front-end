@@ -1,38 +1,64 @@
-.profile-header{
-    display: flex;
-    margin: 0 auto;
-    width: 90%;
-    justify-content: space-evenly;
-    align-items: center;
-    margin-bottom: 55px;
-    .profile-name{
-        font-size: 3rem;
-        margin-bottom: 10px;
+.profile-header {
+  display: flex;
+  margin: 0 auto;
+  width: 90%;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 55px;
+  color: #98473e;
+  .profile-name {
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+  .profile-title {
+    margin: 10px 0;
+    font-size: 2rem;
+  }
+  .profile-specialty {
+    margin: 10px 0;
+    font-size: 1.5rem;
+  }
+  p {
+    font-size: 1.3rem;
+  }
+
+  .tagline {
+    font-style: italic;
+  }
+
+  .profile-pic-half {
+    padding: 3% 0;
+    width: 50%;
+    img {
+      max-width: 100%;
+      max-height: 40vh;
+      border-radius: 40px;
     }
-    .profile-title{
-        margin: 10px 0;
-        font-size: 2rem;
-    }
-    .profile-specialty{
-        margin: 10px 0;
-        font-size: 1.5rem;
-    }
-    p{
-        font-size: 1.3rem;
-    }
+  }
 }
 
-.trips-section-title{
-    font-size: 2rem
+.trips-section-title {
+  font-size: 2rem;
+  color: #98473e;
 }
-.trips-container{
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    .trip-card{
-        background: #E7A5A5;
-        padding: 13px 15px;
-        border-radius: 10px;
-        margin: 15px 25px;
+.trips-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding-bottom: 4%;
+  .trip-card {
+    background: #1b2f33;
+    padding: 13px 15px;
+    border-radius: 10px;
+    margin: 15px 25px;
+
+    &:hover {
+      box-shadow: 1px 3px 10px #152614;
     }
+  }
+}
+
+a {
+  color: #f7f0f0;
+  text-decoration: none;
 }

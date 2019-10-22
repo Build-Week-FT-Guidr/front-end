@@ -10,9 +10,9 @@ const Login = props => {
       <h1>Log In</h1>
       <Formik
         className="form-control"
-        initialValues={{ email: "", password: "" }}
+        initialValues={{ username: "", password: "" }}
         validationSchema={Yup.object().shape({
-          email: Yup.string().required("Please enter user's email"),
+          username: Yup.string().required("Please enter user's username"),
           password: Yup.string().required("Please enter user's password")
         })}
         onSubmit={values => {
@@ -20,9 +20,9 @@ const Login = props => {
           history.push("/profile");
         }}
         render={({ errors, status, touched }) => (
-          <Form className='login-form'>
-            <Field type="email" name="email" placeholder="E-mail" />
-            {touched.email && errors.email && (
+          <Form className="login-form">
+            <Field type="text" name="username" placeholder="Username" />
+            {touched.username && errors.username && (
               <p className="error">{errors.email}</p>
             )}
 
