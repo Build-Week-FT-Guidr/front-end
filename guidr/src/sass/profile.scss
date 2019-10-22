@@ -1,38 +1,47 @@
-.profile-header{
-    display: flex;
-    margin: 0 auto;
-    width: 90%;
-    justify-content: space-evenly;
-    align-items: center;
-    margin-bottom: 55px;
-    .profile-name{
-        font-size: 3rem;
-        margin-bottom: 10px;
-    }
-    .profile-title{
-        margin: 10px 0;
-        font-size: 2rem;
-    }
-    .profile-specialty{
-        margin: 10px 0;
-        font-size: 1.5rem;
-    }
-    p{
-        font-size: 1.3rem;
-    }
+.profile-header {
+  display: flex;
+  margin: 0 auto;
+  width: 90%;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 55px;
+  .profile-name {
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+  .profile-title {
+    margin: 10px 0;
+    font-size: 2rem;
+  }
+  .profile-specialty {
+    margin: 10px 0;
+    font-size: 1.5rem;
+  }
+  p {
+    font-size: 1.3rem;
+  }
 }
 
-.trips-section-title{
-    font-size: 2rem
+.trips-section-title {
+  font-size: 2rem;
 }
-.trips-container{
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    .trip-card{
-        background: #E7A5A5;
-        padding: 13px 15px;
-        border-radius: 10px;
-        margin: 15px 25px;
+.trips-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  .trip-card {
+    background: #e7a5a5;
+    padding: 13px 15px;
+    border-radius: 10px;
+    margin: 15px 25px;
+
+    &:hover {
+      box-shadow: 1px 3px 3px #228b22;
     }
+  }
+}
+
+a {
+  color: #000;
+  text-decoration: none;
 }
