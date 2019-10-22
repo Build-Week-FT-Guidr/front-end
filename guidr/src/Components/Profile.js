@@ -121,6 +121,7 @@ const Profile = () => {
           <h4 className="profile-specialty">specialty</h4>
           <p>___ years of experience</p>
           <button>Add Trip</button>
+          <button>Edit Guide</button>
         </div>
       </section>
       <h3 className="trips-section-title">Trips</h3>
