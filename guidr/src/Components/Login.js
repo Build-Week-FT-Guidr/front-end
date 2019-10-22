@@ -2,6 +2,8 @@ import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 
+import axiosWithAuth from '../utils/axiosWithAuth';
+
 const Login = props => {
   const { history } = props;
   // Returns the form component and the error messages when the input field is touched and left empty, or just left empty
@@ -10,20 +12,28 @@ const Login = props => {
       <h1>Log In</h1>
       <Formik
         className="form-control"
-        initialValues={{ email: "", password: "" }}
+        initialValues={{ username: "", password: "" }}
         validationSchema={Yup.object().shape({
-          email: Yup.string().required("Please enter user's email"),
+          username: Yup.string().required("Please enter user's username"),
           password: Yup.string().required("Please enter user's password")
         })}
         onSubmit={values => {
           console.log(values);
-          history.push("/profile");
+          axiosWithAuth()
+            .post('/users/login', values)
+            .then(res => {
+              console.log(res)
+              localStorage.setItem("token", res.data.token);
+              history.push(`/users/${res.data.id}`);
+            })
+            .catch(err => console.log(err))
+          
         }}
         render={({ errors, status, touched }) => (
           <Form className='login-form'>
-            <Field type="email" name="email" placeholder="E-mail" />
-            {touched.email && errors.email && (
-              <p className="error">{errors.email}</p>
+            <Field type="text" name="username" placeholder="Username" />
+            {touched.username && errors.username && (
+              <p className="error">{errors.username}</p>
             )}
 
             <Field
