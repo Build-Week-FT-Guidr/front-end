@@ -19,7 +19,7 @@ import Browse from './Components/Browse'
 function App() {
   useEffect(() => {
     axiosWithAuth()
-    .get('/users/1')
+    .get('/users')
     .then(res => {
       console.log(res)
     })

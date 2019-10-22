@@ -26,7 +26,7 @@ const Login = props => {
               localStorage.setItem("token", res.data.token);
               history.push(`/users/${res.data.id}`);
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log(err.response))
           
         }}
         render={({ errors, status, touched }) => (

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
 import UserCard from './UserCard';
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 const Browse = () => {
     const [users, setUsers] = useState([])
     useEffect(() => {
-        axios
+        axiosWithAuth()
         .get(`https://guidr-bw.herokuapp.com/users/`)
         .then(res => {
             console.log(res)

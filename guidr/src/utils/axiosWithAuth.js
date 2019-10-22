@@ -6,7 +6,8 @@ const axiosWithAuth = () => {
     return axios.create({
         baseURL: `https://guidr-bw.herokuapp.com`,
         headers: {
-            Authorization: token
+            Authorization: token,
+            'Content-Type': 'application/json'
         }
     })
 }

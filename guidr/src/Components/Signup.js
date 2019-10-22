@@ -27,7 +27,7 @@ const Signup = props => {
         onSubmit={values => {
           console.log(values);
           axiosWithAuth()
-            .post(`/users/register`, values)
+            .post(`users/register`, values)
             .then(res => {
               console.log(res)
               history.push("/profile")
