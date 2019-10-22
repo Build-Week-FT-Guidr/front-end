@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SearchForm from "./SearchForm";
+import GuidePic from "./Assets/images/Guide.png";
 const Profile = () => {
   const dummyTrips = [
     {
@@ -112,7 +113,7 @@ const Profile = () => {
     <>
       <section className="profile-header">
         <div className="profile-pic-half">
-          <img src="img" />
+          <img src={GuidePic} alt="Guide Name" />
         </div>
         <div className="guide-info-half">
           <h3 className="profile-name">Guide Name</h3>
