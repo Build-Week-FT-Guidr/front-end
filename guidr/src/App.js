@@ -1,14 +1,29 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Route } from "react-router-dom";
+import axiosWithAuth from './utils/axiosWithAuth';
+
+
 import "./App.scss";
 import Home from "./Components/Home";
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
 import NavigationLinks from "./Components/Navigation/NavigationLinks";
+import Footer from "./Components/Footer";
 import Profile from "./Components/Profile";
 // import TripCard from "./Components/TripCard";
 
+
+
 function App() {
+  useEffect(() => {
+    axiosWithAuth()
+    .get('/users/1')
+    .then(res => {
+      console.log(res)
+    })
+    .catch(err => console.log(err))
+  }, [])
+
   return (
     <div className="App">
       <NavigationLinks />
@@ -17,6 +32,7 @@ function App() {
       <Route path="/signup" component={Signup} />
       <Route path="/profile" component={Profile} />
       {/* <Route path="/trip" component={TripCard} /> */}
+      <Footer />
     </div>
   );
 }

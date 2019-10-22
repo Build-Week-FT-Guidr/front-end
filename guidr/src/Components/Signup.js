@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
+import axiosWithAuth from '../utils/axiosWithAuth';
 // axiosWithAuth
 
 const Signup = props => {
@@ -11,28 +12,34 @@ const Signup = props => {
       <Formik
         initialValues={{
           name: "",
-          email: "",
+          username: "",
           password: "",
           confirmPassword: ""
         }}
         validationSchema={Yup.object().shape({
           name: Yup.string().required("Please enter your first and last name"),
-          email: Yup.string().required("Please enter your email"), // check for @
+          username: Yup.string().required("Please enter your email"), // check for @
           password: Yup.string().required("Please enter a password"),
           confirmPassword: Yup.string()
             .required("Please confirm your password")
             .oneOf([Yup.ref("password"), null], "Passwords must match") //check that passwords match
         })}
         onSubmit={values => {
-          console.log(values)
-          history.push('/profile')
+          console.log(values);
+          axiosWithAuth()
+            .post(`/users/register`, values)
+            .then(res => {
+              console.log(res)
+              history.push("/profile")
+            })
+            .catch(err => console.log(err))
         }}
         render={({ errors, status, touched }) => (
           <Form className="signup-form">
             <Field type="text" name="name" placeholder="Name (First, Last)" />
             {touched.name && errors.name && <p>{errors.name}</p>}
 
-            <Field type="email" name="email" placeholder="email@email.com" />
+            <Field type="text" name="username" placeholder="Username" />
             {touched.email && errors.email && <p>{errors.email}</p>}
 
             <Field type="password" name="password" placeholder="password" />
