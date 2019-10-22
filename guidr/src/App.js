@@ -5,6 +5,7 @@ import Home from "./Components/Home";
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
 import NavigationLinks from "./Components/Navigation/NavigationLinks";
+import Footer from "./Components/Footer";
 import Profile from "./Components/Profile";
 // import TripCard from "./Components/TripCard";
 
@@ -17,6 +18,7 @@ function App() {
       <Route path="/signup" component={Signup} />
       <Route path="/profile" component={Profile} />
       {/* <Route path="/trip" component={TripCard} /> */}
+      <Footer />
     </div>
   );
 }

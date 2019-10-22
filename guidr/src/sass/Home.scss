@@ -28,24 +28,25 @@
   padding: 3% 0;
   width: 100%;
 
-  button {
-    align-items: center;
-    padding: 1.2rem;
-    font-size: 1.5rem;
+  a {
+    color: #000;
+    text-decoration: none;
+    padding: 0;
     margin: 0 3%;
-    border: 1px solid #ccc;
-    border-radius: 10px;
 
-    &:hover {
-      box-shadow: 1px 1px 10px snow;
-      cursor: pointer;
-    }
+    button {
+      align-items: center;
+      padding: 1.2rem;
+      font-size: 1.5rem;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      width: 100%;
+      margin: 0 5%;
 
-    a {
-      color: #000;
-      text-decoration: none;
-      padding: 0;
-      margin: 0;
+      &:hover {
+        box-shadow: 1px 1px 10px snow;
+        cursor: pointer;
+      }
     }
   }
 }

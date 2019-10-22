@@ -24,15 +24,15 @@ const Signup = props => {
             .oneOf([Yup.ref("password"), null], "Passwords must match") //check that passwords match
         })}
         onSubmit={values => {
-          console.log(values)
-          history.push('/profile')
+          console.log(values);
+          history.push("/profile");
         }}
         render={({ errors, status, touched }) => (
           <Form className="signup-form">
             <Field type="text" name="name" placeholder="Name (First, Last)" />
             {touched.name && errors.name && <p>{errors.name}</p>}
 
-            <Field type="text" name="email" placeholder="email@email.com" />
+            <Field type="email" name="email" placeholder="email@email.com" />
             {touched.email && errors.email && <p>{errors.email}</p>}
 
             <Field type="password" name="password" placeholder="password" />
