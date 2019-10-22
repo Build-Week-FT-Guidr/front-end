@@ -4,11 +4,15 @@
   align-items: center;
   padding: 0 30px;
   height: 10vh;
-  margin: 0 10px;
+  background-color: #228b22;
 
   a {
     padding: 30px;
     text-decoration: none;
-    color: black;
+    color: #fff;
+
+    &:hover {
+      color: #ff7b31;
+    }
   }
 }
