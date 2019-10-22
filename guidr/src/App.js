@@ -17,7 +17,7 @@ import Profile from "./Components/Profile";
 function App() {
   useEffect(() => {
     axiosWithAuth()
-    .get('/users/1')
+    .get('/users/')
     .then(res => {
       console.log(res)
     })

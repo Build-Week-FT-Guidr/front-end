@@ -14,16 +14,16 @@ const Signup = props => {
           name: "",
           username: "",
           password: "",
-          confirmPassword: ""
+          // confirmPassword: ""
         }}
         validationSchema={Yup.object().shape({
           name: Yup.string().required("Please enter your first and last name"),
           username: Yup.string().required("Please enter your email"), // check for @
           password: Yup.string().required("Please enter a password"),
-          confirmPassword: Yup.string()
-            .required("Please confirm your password")
-            .oneOf([Yup.ref("password"), null], "Passwords must match") //check that passwords match
-        })}
+        //   confirmPassword: Yup.string()
+        //     .required("Please confirm your password")
+        //     .oneOf([Yup.ref("password"), null], "Passwords must match") //check that passwords match
+         })}
         onSubmit={values => {
           console.log(values);
           axiosWithAuth()
@@ -45,14 +45,14 @@ const Signup = props => {
             <Field type="password" name="password" placeholder="password" />
             {touched.password && errors.password && <p>{errors.password}</p>}
 
-            <Field
+            {/* <Field
               type="password"
               name="confirmPassword"
               placeholder="Confirm password"
             />
             {touched.confirmPassword && errors.confirmPassword && (
               <p>{errors.confirmPassword}</p>
-            )}
+            )} */}
 
             <button type="submit">Sign up</button>
 
