@@ -8,12 +8,13 @@ const Home = () => {
         <h1>Mission Statement Here</h1>
       </div>
       <div className="button-container">
-        <button>
-          <Link to="/login">Log In</Link>
-        </button>
-        <button>
-          <Link to="/signup">Sign Up</Link>
-        </button>
+        <Link to="/login">
+          <button>Log In</button>
+        </Link>
+
+        <Link to="/signup">
+          <button>Sign Up</button>
+        </Link>
       </div>
     </div>
   );
