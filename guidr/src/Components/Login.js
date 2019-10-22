@@ -14,7 +14,7 @@ const Login = props => {
         className="form-control"
         initialValues={{ username: "", password: "" }}
         validationSchema={Yup.object().shape({
-          username: Yup.string().required("Please enter user's email"),
+          username: Yup.string().required("Please enter user's username"),
           password: Yup.string().required("Please enter user's password")
         })}
         onSubmit={values => {
