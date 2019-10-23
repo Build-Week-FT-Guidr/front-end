@@ -6,6 +6,56 @@
   align-items: center;
   margin-bottom: 55px;
   color: #98473e;
+
+  .guide-info-half {
+    button {
+      border-radius: 15px;
+      padding: 5%;
+      margin: 0 5% 0 0;
+      background-color: #98473e;
+      color: #fff;
+      border: 1px solid #98473e;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #88958d;
+        color: #fff;
+        border: 1px solid #88958d;
+        box-shadow: 1px 3px 10px #152614;
+      }
+    }
+
+    @media only screen and (max-width: 600px) {
+      font-size: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-content: center;
+      align-items: center;
+
+      .button-profile-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        align-content: center;
+        text-align: center;
+
+        a {
+          margin: 0;
+          padding: 0;
+        }
+
+        a,
+        button {
+          width: 100%;
+          cursor: pointer;
+          padding: 3% 0;
+          border-radius: 15px;
+        }
+      }
+    }
+  }
+
   .profile-name {
     font-size: 3rem;
     margin-bottom: 10px;
@@ -35,6 +85,10 @@
       border-radius: 40px;
     }
   }
+
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+  }
 }
 
 .trips-section-title {
@@ -45,7 +99,14 @@
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  padding-bottom: 4%;
+  padding-bottom: 3%;
+
+  :last-child {
+    @media only screen and (max-width: 950px) {
+      padding-bottom: 10%;
+    }
+  }
+
   .trip-card {
     background: #1b2f33;
     padding: 13px 15px;
@@ -61,4 +122,10 @@
 a {
   color: #f7f0f0;
   text-decoration: none;
+}
+
+input {
+  width: 60%;
+  padding: 0.6% 1%;
+  font-size: 1.2rem;
 }

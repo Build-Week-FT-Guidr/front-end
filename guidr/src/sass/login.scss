@@ -20,5 +20,22 @@
       color: red;
       font-size: 0.7rem;
     }
+
+    button {
+      width: 30%;
+      padding: 1.5%;
+      margin: 3% 0;
+      cursor: pointer;
+      background-color: #98473e;
+      color: #fff;
+      border: 1px solid #98473e;
+
+      &:hover {
+        background-color: #88958d;
+        color: #fff;
+        border: 1px solid #88958d;
+        box-shadow: 1px 3px 10px #152614;
+      }
+    }
   }
 }
