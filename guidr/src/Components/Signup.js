@@ -2,6 +2,7 @@ import React from "react";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import axiosWithAuth from '../utils/axiosWithAuth';
+import axios from 'axios';
 // axiosWithAuth
 
 const Signup = props => {
@@ -26,10 +27,11 @@ const Signup = props => {
          })}
         onSubmit={values => {
           console.log(values);
-          axiosWithAuth()
-            .post(`users/register`, values)
+          axios
+            .post(`/users/register`, values)
             .then(res => {
-              console.log(res)
+              console.log(res, 'SIGNUP')
+              localStorage.setItem("token", res.data.token);
               history.push("/profile")
             })
             .catch(err => console.log(err))
