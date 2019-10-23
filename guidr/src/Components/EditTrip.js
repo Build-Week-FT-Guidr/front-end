@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 const EditTrip = () => {
     const [trip, setTrip] = useState({isPrivate: false, isProfessional: true})
@@ -43,7 +44,12 @@ const EditTrip = () => {
 
     const submitChanges = e => {
         e.preventDefault();
-        console.log(trip)
+        axiosWithAuth()
+        .put(`/trips/1`, trip)
+        .then(res => {
+            console.log(res, 'put trip')
+        })
+        .catch(err => console.log(err))
     }
     return(
         <>
