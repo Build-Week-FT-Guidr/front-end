@@ -24,7 +24,7 @@ const Login = props => {
             .then(res => {
               console.log(res);
               localStorage.setItem("token", res.data.token);
-              history.push(`/users/${res.data.id}`);
+              history.push(`/profile/1`);
             })
             .catch(err => console.log(err));
         }}

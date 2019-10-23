@@ -4,6 +4,7 @@ import SearchForm from "./SearchForm";
 import GuidePic from "./Assets/images/Guide.png";
 import UsersContext from "../contexts/UserContext";
 import UsersTripsContext from "../contexts/UsersTripsContext";
+import axiosWithAuth from "../utils/axiosWithAuth";
 const Profile = () => {
   
   // Set state for the search query and the data so that it can be re-render on useeffect change
@@ -11,9 +12,22 @@ const Profile = () => {
   const [tripData, setTripData] = useState([]);
 
   const users = useContext(UsersContext)
-  const userTrips = useContext(UsersTripsContext);
+  const [profile, setProfile] = useState({})
+  useEffect(() => {
+    axiosWithAuth()
+    .get(`/users/1/trips`)
+    .then(res => {
+      console.log(res, 'user trips')
+      setProfile({
+        id: res.data[0].id,
+        username: res.data[0].username
+      })
+    })
+  }, [])
 
-  console.log(userTrips)
+  console.log(profile, 'profile')
+
+
 
 
   const handleChange = event => {
@@ -34,7 +48,7 @@ const Profile = () => {
           <img src={GuidePic} alt="Guide Name" />
         </div>
         <div className="guide-info-half">
-          <h3 className="profile-name">hi</h3>
+          <h3 className="profile-name">{profile.username}</h3>
           <h4 className="profile-title">title</h4>
           <p className="tagline">Profile Tagline</p>
           <h4 className="profile-specialty">specialty</h4>

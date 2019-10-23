@@ -16,6 +16,7 @@ import Browse from './Components/Browse'
 
 import UserContext from './contexts/UserContext';
 import UsersTripsContext from './contexts/UsersTripsContext';
+import PrivateRoute from "./Components/PrivateRoute";
 
 
 
@@ -51,9 +52,9 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route path="/profile" component={Profile} />
+        <PrivateRoute path="/profile/:id" component={Profile} />
         <Route path="/trip" component={TripCard} />
-        <Route path="/newtrip" component={NewTrip} />
+        <PrivateRoute path="/newtrip" component={NewTrip} />
         <Route path='/browse' component={Browse} />
         </UsersTripsContext.Provider>
       </UserContext.Provider>
