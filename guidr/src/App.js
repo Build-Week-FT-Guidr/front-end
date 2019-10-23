@@ -12,6 +12,7 @@ import Footer from "./Components/Footer";
 import Profile from "./Components/Profile";
 import TripCard from "./Components/TripCard";
 import NewTrip from "./Components/NewTrip";
+import EditTrip from './Components/EditTrip';
 import Browse from './Components/Browse'
 
 import UserContext from './contexts/UserContext';
@@ -47,6 +48,7 @@ function App() {
   return (
     <div className="App">
       <NavigationLinks />
+
       <UserContext.Provider value={users}>
         <UsersTripsContext.Provider value={userTrips}>
         <Route exact path="/" component={Home} />
@@ -55,10 +57,12 @@ function App() {
         <PrivateRoute path="/profile/:id" component={Profile} />
         <Route path="/trip" component={TripCard} />
         <PrivateRoute path="/newtrip" component={NewTrip} />
+        <Route path="/trip/:id" component={EditTrip} />
         <Route path='/browse' component={Browse} />
         </UsersTripsContext.Provider>
       </UserContext.Provider>
-      
+   
+
       <Footer />
     </div>
   );
