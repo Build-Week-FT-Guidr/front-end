@@ -1,113 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import SearchForm from "./SearchForm";
 import GuidePic from "./Assets/images/Guide.png";
+import UsersContext from "../contexts/UserContext";
+import UsersTripsContext from "../contexts/UsersTripsContext";
 const Profile = () => {
-  const dummyTrips = [
-    {
-      title: "my house",
-      description: "I gave a comfortable tour of my house in AC",
-      isPrivate: false,
-      isProfessional: true,
-      images: "",
-      distance: "50m",
-      date: "15 October 2019 ",
-      tripType: "short stroll in AC",
-      id: 1
-    },
-    {
-      title: "my house",
-      description: "I gave a comfortable tour of my house in AC",
-      isPrivate: false,
-      isProfessional: true,
-      images: "",
-      distance: "50m",
-      date: "15 October 2019 ",
-      tripType: "short stroll in AC",
-      id: 2
-    },
-    {
-      title: "Las Vegas",
-      description: "I gave a comfortable tour of my house in AC",
-      isPrivate: false,
-      isProfessional: true,
-      images: "",
-      distance: "50m",
-      date: "15 October 2019 ",
-      tripType: "short stroll in AC",
-      id: 3
-    },
-    {
-      title: "my house",
-      description: "I gave a comfortable tour of my house in AC",
-      isPrivate: false,
-      isProfessional: true,
-      images: "",
-      distance: "50m",
-      date: "15 October 2019 ",
-      tripType: "short stroll in AC",
-      id: 4
-    },
-    {
-      title: "my house",
-      description: "I gave a comfortable tour of my house in AC",
-      isPrivate: false,
-      isProfessional: true,
-      images: "",
-      distance: "50m",
-      date: "15 October 2019 ",
-      tripType: "short stroll in AC",
-      id: 5
-    },
-    {
-      title: "my house",
-      description: "I gave a comfortable tour of my house in AC",
-      isPrivate: false,
-      isProfessional: true,
-      images: "",
-      distance: "50m",
-      date: "15 October 2019 ",
-      tripType: "short stroll in AC",
-      id: 6
-    },
-    {
-      title: "my house",
-      description: "I gave a comfortable tour of my house in AC",
-      isPrivate: false,
-      isProfessional: true,
-      images: "",
-      distance: "50m",
-      date: "15 October 2019 ",
-      tripType: "short stroll in AC",
-      id: 7
-    },
-    {
-      title: "my house",
-      description: "I gave a comfortable tour of my house in AC",
-      isPrivate: false,
-      isProfessional: true,
-      images: "",
-      distance: "50m",
-      date: "15 October 2019 ",
-      tripType: "short stroll in AC",
-      id: 8
-    }
-  ];
-
+  
   // Set state for the search query and the data so that it can be re-render on useeffect change
   const [searchQuery, setSearchQuery] = useState("");
   const [tripData, setTripData] = useState([]);
+
+  const users = useContext(UsersContext)
+  const userTrips = useContext(UsersTripsContext);
+
+  console.log(userTrips)
+
 
   const handleChange = event => {
     setSearchQuery(event.target.value);
   };
 
-  useEffect(() => {
-    const trips = dummyTrips.filter(trip =>
-      trip.title.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-    setTripData(trips);
-  }, [searchQuery]);
+  // useEffect(() => {
+  //   const trips = dummyTrips.filter(trip =>
+  //     trip.title.toLowerCase().includes(searchQuery.toLowerCase())
+  //   );
+  //   setTripData(trips);
+  // }, [searchQuery]);
 
   return (
     <>
@@ -116,7 +34,7 @@ const Profile = () => {
           <img src={GuidePic} alt="Guide Name" />
         </div>
         <div className="guide-info-half">
-          <h3 className="profile-name">Guide Name</h3>
+          <h3 className="profile-name">hi</h3>
           <h4 className="profile-title">title</h4>
           <p className="tagline">Profile Tagline</p>
           <h4 className="profile-specialty">specialty</h4>
@@ -157,3 +75,95 @@ const Profile = () => {
   );
 };
 export default Profile;
+
+
+// const dummyTrips = [
+//   {
+//     title: "my house",
+//     description: "I gave a comfortable tour of my house in AC",
+//     isPrivate: false,
+//     isProfessional: true,
+//     images: "",
+//     distance: "50m",
+//     date: "15 October 2019 ",
+//     tripType: "short stroll in AC",
+//     id: 1
+//   },
+//   {
+//     title: "my house",
+//     description: "I gave a comfortable tour of my house in AC",
+//     isPrivate: false,
+//     isProfessional: true,
+//     images: "",
+//     distance: "50m",
+//     date: "15 October 2019 ",
+//     tripType: "short stroll in AC",
+//     id: 2
+//   },
+//   {
+//     title: "Las Vegas",
+//     description: "I gave a comfortable tour of my house in AC",
+//     isPrivate: false,
+//     isProfessional: true,
+//     images: "",
+//     distance: "50m",
+//     date: "15 October 2019 ",
+//     tripType: "short stroll in AC",
+//     id: 3
+//   },
+//   {
+//     title: "my house",
+//     description: "I gave a comfortable tour of my house in AC",
+//     isPrivate: false,
+//     isProfessional: true,
+//     images: "",
+//     distance: "50m",
+//     date: "15 October 2019 ",
+//     tripType: "short stroll in AC",
+//     id: 4
+//   },
+//   {
+//     title: "my house",
+//     description: "I gave a comfortable tour of my house in AC",
+//     isPrivate: false,
+//     isProfessional: true,
+//     images: "",
+//     distance: "50m",
+//     date: "15 October 2019 ",
+//     tripType: "short stroll in AC",
+//     id: 5
+//   },
+//   {
+//     title: "my house",
+//     description: "I gave a comfortable tour of my house in AC",
+//     isPrivate: false,
+//     isProfessional: true,
+//     images: "",
+//     distance: "50m",
+//     date: "15 October 2019 ",
+//     tripType: "short stroll in AC",
+//     id: 6
+//   },
+//   {
+//     title: "my house",
+//     description: "I gave a comfortable tour of my house in AC",
+//     isPrivate: false,
+//     isProfessional: true,
+//     images: "",
+//     distance: "50m",
+//     date: "15 October 2019 ",
+//     tripType: "short stroll in AC",
+//     id: 7
+//   },
+//   {
+//     title: "my house",
+//     description: "I gave a comfortable tour of my house in AC",
+//     isPrivate: false,
+//     isProfessional: true,
+//     images: "",
+//     distance: "50m",
+//     date: "15 October 2019 ",
+//     tripType: "short stroll in AC",
+//     id: 8
+//   }
+// ];

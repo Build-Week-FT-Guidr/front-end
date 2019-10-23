@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import { Route } from "react-router-dom";
 import axiosWithAuth from './utils/axiosWithAuth';
 
@@ -15,14 +15,31 @@ import NewTrip from "./Components/NewTrip";
 import EditTrip from './Components/EditTrip';
 import Browse from './Components/Browse'
 
+import UserContext from './contexts/UserContext';
+import UsersTripsContext from './contexts/UsersTripsContext';
+
 
 
 function App() {
+  const [users, setUsers] = useState([])
+  const [userTrips, setUserTrips] = useState([]);
+
   useEffect(() => {
     axiosWithAuth()
     .get('/users')
     .then(res => {
       console.log(res)
+      setUsers(res.data)
+    })
+    .catch(err => console.log(err))
+  }, [])
+
+  useEffect(() => {
+    axiosWithAuth()
+    .get('/users/1/trips')
+    .then(res => {
+      console.log(res)
+      setUserTrips(res.data)
     })
     .catch(err => console.log(err))
   }, [])
@@ -30,14 +47,21 @@ function App() {
   return (
     <div className="App">
       <NavigationLinks />
-      <Route exact path="/" component={Home} />
-      <Route path="/login" component={Login} />
-      <Route path="/signup" component={Signup} />
-      <Route path="/profile" component={Profile} />
-      <Route path="/trip" component={TripCard} />
-      <Route path="/newtrip" component={NewTrip} />
-      <Route path="/trip/:id" component={EditTrip} />
-      <Route path='/browse' component={Browse} />
+
+      <UserContext.Provider value={users}>
+        <UsersTripsContext.Provider value={userTrips}>
+        <Route exact path="/" component={Home} />
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
+        <Route path="/profile" component={Profile} />
+        <Route path="/trip" component={TripCard} />
+        <Route path="/newtrip" component={NewTrip} />
+        <Route path="/trip/:id" component={EditTrip} />
+        <Route path='/browse' component={Browse} />
+        </UsersTripsContext.Provider>
+      </UserContext.Provider>
+   
+
       <Footer />
     </div>
   );
