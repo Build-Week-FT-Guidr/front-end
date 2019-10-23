@@ -1,10 +1,8 @@
 import React, {useState} from 'react';
 
 const EditTrip = () => {
-    const [trip, setTrip] = useState({isPrivate: true})
-    if (trip.isPrivate === true){
-        
-    }
+    const [trip, setTrip] = useState({isPrivate: false, isProfessional: true})
+    
     const handleChanges = e => {
         setTrip({
             ...trip,
@@ -12,7 +10,7 @@ const EditTrip = () => {
         })
         console.log(trip)
     };
-
+   
     const isPrivateChange = e => {
         if (trip.isPrivate === true){
             setTrip({
@@ -72,7 +70,8 @@ const EditTrip = () => {
                 type="checkbox"
                 name="isPrivate"
                 value={trip.isPrivate}
-                onChange={isPrivateChange}   
+                onChange={isPrivateChange}
+                checked={trip.isPrivate}
             />
             </p>
             <p> is this professional?
@@ -82,7 +81,8 @@ const EditTrip = () => {
                 type="checkbox"
                 name="isProfessional"
                 value={trip.isProfessional}
-                onChange={isProfessionalChange}   
+                onChange={isProfessionalChange} 
+                checked={trip.isProfessional}  
             />
             </p>
             <input
