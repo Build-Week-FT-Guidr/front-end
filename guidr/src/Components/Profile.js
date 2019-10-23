@@ -121,10 +121,14 @@ const Profile = () => {
           <p className="tagline">Profile Tagline</p>
           <h4 className="profile-specialty">specialty</h4>
           <p>___ years of experience</p>
-          <Link to="/newtrip">
-            <button>Add Trip</button>
-          </Link>
-          <button>Edit Guide</button>
+          <div className="button-profile-container">
+            <Link to="/newtrip">
+              <button>Add Trip</button>
+            </Link>
+            <Link to="/editguide">
+              <button>Edit Guide</button>
+            </Link>
+          </div>
         </div>
       </section>
       <h3 className="trips-section-title">Trips</h3>

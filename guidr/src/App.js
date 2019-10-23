@@ -13,12 +13,14 @@ import Profile from "./Components/Profile";
 import TripCard from "./Components/TripCard";
 import NewTrip from "./Components/NewTrip";
 import EditTrip from './Components/EditTrip';
+import Browse from './Components/Browse'
+
 
 
 function App() {
   useEffect(() => {
     axiosWithAuth()
-    .get('/users/')
+    .get('/users')
     .then(res => {
       console.log(res)
     })
@@ -35,6 +37,7 @@ function App() {
       <Route path="/trip" component={TripCard} />
       <Route path="/newtrip" component={NewTrip} />
       <Route path="/trip/:id" component={EditTrip} />
+      <Route path='/browse' component={Browse} />
       <Footer />
     </div>
   );
