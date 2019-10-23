@@ -1,0 +1,48 @@
+.newtrip-form-container {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  align-content: center;
+  margin: 0 auto;
+  align-items: center;
+  margin-bottom: 20%;
+  padding-top: 1.5%;
+  font-size: 1.2rem;
+
+  textarea {
+    min-width: 80%;
+    max-width: 80%;
+    max-height: 25vh;
+  }
+
+  input,
+  textarea {
+    width: 80%;
+    padding: 1%;
+    margin: 1% 0;
+  }
+
+  button {
+    width: 30%;
+    padding: 1.5%;
+    margin: 3% 0;
+    cursor: pointer;
+    background-color: #98473e;
+    color: #fff;
+    border: 1px solid #98473e;
+
+    &:hover {
+      background-color: #88958d;
+      color: #fff;
+      border: 1px solid #88958d;
+      box-shadow: 1px 3px 10px #152614;
+    }
+  }
+
+  p {
+    color: red;
+    font-size: 0.7rem;
+    padding: 0%;
+    margin: 0%;
+  }
+}
