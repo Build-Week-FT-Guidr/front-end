@@ -17,6 +17,14 @@
     font-size: 3rem;
     padding: 2% 1%;
     color: #fff;
+
+    @media only screen and (max-width: 800px) {
+      font-size: 2.5rem;
+    }
+
+    @media only screen and (max-width: 500px) {
+      font-size: 2rem;
+    }
   }
 }
 
@@ -48,5 +56,9 @@
         cursor: pointer;
       }
     }
+  }
+
+  @media only screen and (max-width: 950px) {
+    padding-bottom: 5%;
   }
 }
