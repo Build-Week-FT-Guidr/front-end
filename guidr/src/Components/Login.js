@@ -27,7 +27,7 @@ const Login = props => {
               localStorage.setItem('id', res.data.user.id)
               history.push(`/profile/${res.data.user.id}`);
             })
-            .catch(err => window.alert('Sorry, an error occurred'));
+            .catch(err => window.alert('Sorry, an error occurred. Please check your login credentials and try again.'));
         }}
         render={({ errors, status, touched }) => (
           <Form className="login-form">
