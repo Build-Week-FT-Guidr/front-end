@@ -27,3 +27,12 @@ _Guidr is a platform that helps backcountry guides of all types log their privat
 ## What do the top 3 similar apps do for their users?
 * Log trips
 * Have a map functionality to view trips
+
+# Design - Planning
+## What will your user flow be?
+* Log in
+* View their profile which shows the trips they have done
+  * Bio page
+  * They can add a new trip
+* A trip details page
+  * Display more in-depth trip information
