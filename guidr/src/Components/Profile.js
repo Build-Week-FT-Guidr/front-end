@@ -12,24 +12,26 @@ const Profile = (props) => {
   // Set state for the search query and the data so that it can be re-render on useeffect change
   const [searchQuery, setSearchQuery] = useState("");
 
-  const allTrips = useContext(AllTripsContext);
+  const {allTrips} = useContext(AllTripsContext);
+  const {setAllTrips} = useContext(AllTripsContext)
   const users = useContext(UsersContext)
   const [user, setUser] = useState({})
-
-  useEffect(() => {
-    axiosWithAuth()
-    .get(`/users/${props.match.params.id}`)
-    .then(res => {
-      console.log(res, 'PROFILE DATA')
-      setUser(res.data)
-    })
-  }, [])
 
 const stringId = parseInt(props.match.params.id)
 const usersTrips = allTrips.filter(trip => trip.user_id === stringId)
 console.log(usersTrips, 'userstrips')
 
+useEffect(() => {
+  axiosWithAuth()
+  .get(`/users/${props.match.params.id}`)
+  .then(res => {
+    console.log(res, 'PROFILE DATA')
+    setUser(res.data)
+  })
+}, [users])
 
+
+  
 
   const handleChange = event => {
     setSearchQuery(event.target.value);
@@ -74,19 +76,32 @@ console.log(usersTrips, 'userstrips')
         {/* map through trips in here */}
 
         {usersTrips.map(item => {
-          const tripToEdit = item;
-          console.log(tripToEdit, 'trip to edit')
+          const deleteTrip = () => {
+            axiosWithAuth()
+            .delete(`/trips/${item.id}`)
+            .then(res => {
+              axiosWithAuth()
+                .get(`/trips`)
+                .then(res => {
+                  setAllTrips(res.data)
+                })
+                .catch(err => console.log(err))
+
+            //end outer then
+          })
+            .catch(err => console.log(err))
+          }
           return (
-            <Link to={`/trip/${item.id}`}>
-              <div className="trip-card" key={item.id}>
+            <div className="trip-card" key={item.id}>
+              <Link to={`/trip/${item.id}`}>
                 <h4>{item.title}</h4>
                 <p>{item.description}</p>
                 <p>{item.date}</p>
                 <p>distance: {item.distance}</p>
                 <button>Edit Trip</button>
-                <button>Delete Trip</button>
-              </div>
             </Link>
+            <button onClick={deleteTrip}>Delete Trip</button>
+            </div>
           );
         })}
       </div>

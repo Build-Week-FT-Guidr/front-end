@@ -7,7 +7,6 @@ const EditTrip = (props) => {
     const [trip, setTrip] = useState({})
     const allTrips = useContext(AllTripsContext)
 
-    console.log(allTrips, 'all trips in edit.js')
 
 
     // const tripToEdit = allTrips.filter(trip => trip.id === parseInt(props.match.params.id))
@@ -59,7 +58,11 @@ const EditTrip = (props) => {
     };
 
     const submitChanges = e => {
-        e.preventDefault();
+        e.preventDefault()
+        axiosWithAuth()
+        .put(`/trips/${props.match.params.id}`, trip)
+        .then(res => props.history.push(`/profile/${trip.user_id}`))
+        .catch(err => console.log(err))
     }
     return(
         <>

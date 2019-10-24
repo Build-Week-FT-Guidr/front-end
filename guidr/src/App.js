@@ -55,7 +55,7 @@ function App() {
     <div className="App">
       <Route path="/" component={NavigationLinks} />
 
-    <AllTripsContext.Provider value={allTrips}>
+    <AllTripsContext.Provider value={{allTrips, setAllTrips}}>
       <UserContext.Provider value={users}>
         <UsersTripsContext.Provider value={userTrips}>
           <Route exact path="/" component={Home} />
