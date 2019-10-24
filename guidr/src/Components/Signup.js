@@ -32,8 +32,8 @@ const Signup = props => {
             .then(res => {
               console.log(res, "SIGNUP");
               localStorage.setItem("token", res.data.token);
-              localStorage.setItem('id', res.data.id)
-              history.push(`/profile/${res.data.id}`)
+              localStorage.setItem("id", res.data.id);
+              history.push(`/thankyou`);
             })
             .catch(err => console.log(err));
         }}
