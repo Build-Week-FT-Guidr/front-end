@@ -45,7 +45,7 @@ function App() {
 
   return (
     <div className="App">
-      <NavigationLinks />
+      <Route path='/' component={NavigationLinks} />
 
       <UserContext.Provider value={users}>
         <UsersTripsContext.Provider value={userTrips}>

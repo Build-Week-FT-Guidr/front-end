@@ -24,9 +24,10 @@ const Login = props => {
             .then(res => {
               console.log(res, 'LOGIN RESPONSE');
               localStorage.setItem("token", res.data.token);
-              history.push(`/profile/1`);
+              localStorage.setItem('id', res.data.user.id)
+              history.push(`/profile/${res.data.user.id}`);
             })
-            .catch(err => console.log(err));
+            .catch(err => window.alert('Sorry, an error occurred'));
         }}
         render={({ errors, status, touched }) => (
           <Form className="login-form">
