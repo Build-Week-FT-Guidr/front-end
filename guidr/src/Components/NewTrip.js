@@ -2,12 +2,9 @@ import React, {useContext} from "react";
 import { Formik, Form, Field, Text } from "formik";
 import * as Yup from "yup";
 import axiosWithAuth from "../utils/axiosWithAuth";
-import UsersContext from "../contexts/UserContext";
 
 const NewTrip = props => {
   const { history } = props;
-  const users = useContext(UsersContext)
-  console.log(users)
   // Returns the form component and the error messages when the input field is touched and left empty, or just left empty
   return (
     <section>
@@ -41,7 +38,7 @@ const NewTrip = props => {
         onSubmit={values => {
           console.log(values)
           axiosWithAuth()
-          .post(`users/10/trips`, {
+          .post(`users/${localStorage.getItem('id')}/trips`, {
             title: values.title,
             image: "img",
             description: values.description,
