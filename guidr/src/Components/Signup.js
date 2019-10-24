@@ -32,8 +32,8 @@ const Signup = props => {
             .then(res => {
               console.log(res, "SIGNUP");
               localStorage.setItem("token", res.data.token);
-              localStorage.setItem('id', res.data.id)
-              history.push(`/profile/${res.data.id}`)
+              localStorage.setItem("id", res.data.id);
+              history.push(`/thankyou`);
             })
             .catch(err => console.log(err));
         }}
@@ -42,10 +42,14 @@ const Signup = props => {
             <Field type="text" name="name" placeholder="Name (First, Last)" />
             {touched.name && errors.name && <p>{errors.name}</p>}
 
-            <Field type="text" name="username" placeholder="Username" />
+            <Field type="text" name="username" placeholder="Create Username" />
             {touched.username && errors.username && <p>{errors.username}</p>}
 
-            <Field type="password" name="password" placeholder="password" />
+            <Field
+              type="password"
+              name="password"
+              placeholder="Create Password"
+            />
             {touched.password && errors.password && <p>{errors.password}</p>}
 
             {/* <Field
