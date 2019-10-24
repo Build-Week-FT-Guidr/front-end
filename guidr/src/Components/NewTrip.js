@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik, Form, Field, Text } from "formik";
 import * as Yup from "yup";
+import axiosWithAuth from "../utils/axiosWithAuth";
 
 const NewTrip = props => {
   const { history } = props;
@@ -32,7 +33,9 @@ const NewTrip = props => {
           tripType: Yup.string().required("Please enter type of your trip")
         })}
         onSubmit={values => {
-          console.log(values);
+          console.log(values)
+          // axiosWithAuth()
+
         }}
         render={({ errors, status, touched }) => (
           <Form className="newtrip-form-container">

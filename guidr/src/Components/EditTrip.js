@@ -1,7 +1,18 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 const EditTrip = () => {
     const [trip, setTrip] = useState({isPrivate: false, isProfessional: true})
+
+    useEffect(() => {
+        axiosWithAuth()
+        .get('users/1/trips/') 
+        .then(res => {
+            console.log(res, 'trip')
+            setTrip(res.data[0])
+            //could eventually set the trip fields to state and populate them
+        })
+    }, [])
     
     const handleChanges = e => {
         setTrip({
@@ -43,7 +54,6 @@ const EditTrip = () => {
 
     const submitChanges = e => {
         e.preventDefault();
-        console.log(trip)
     }
     return(
         <>

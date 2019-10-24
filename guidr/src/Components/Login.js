@@ -22,11 +22,12 @@ const Login = props => {
           axiosWithAuth()
             .post("/users/login", values)
             .then(res => {
-              console.log(res);
+              console.log(res, 'LOGIN RESPONSE');
               localStorage.setItem("token", res.data.token);
-              history.push(`/users/${res.data.id}`);
+              localStorage.setItem('id', res.data.user.id)
+              history.push(`/profile/${res.data.user.id}`);
             })
-            .catch(err => console.log(err));
+            .catch(err => window.alert('Sorry, an error occurred'));
         }}
         render={({ errors, status, touched }) => (
           <Form className="login-form">

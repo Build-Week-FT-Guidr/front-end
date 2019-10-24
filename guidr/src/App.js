@@ -17,6 +17,7 @@ import Browse from './Components/Browse'
 
 import UserContext from './contexts/UserContext';
 import UsersTripsContext from './contexts/UsersTripsContext';
+import PrivateRoute from "./Components/PrivateRoute";
 
 
 
@@ -28,7 +29,6 @@ function App() {
     axiosWithAuth()
     .get('/users')
     .then(res => {
-      console.log(res)
       setUsers(res.data)
     })
     .catch(err => console.log(err))
@@ -38,7 +38,6 @@ function App() {
     axiosWithAuth()
     .get('/users/1/trips')
     .then(res => {
-      console.log(res)
       setUserTrips(res.data)
     })
     .catch(err => console.log(err))
@@ -46,16 +45,16 @@ function App() {
 
   return (
     <div className="App">
-      <NavigationLinks />
+      <Route path='/' component={NavigationLinks} />
 
       <UserContext.Provider value={users}>
         <UsersTripsContext.Provider value={userTrips}>
         <Route exact path="/" component={Home} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route path="/profile" component={Profile} />
+        <PrivateRoute path="/profile/:id" component={Profile} />
         <Route path="/trip" component={TripCard} />
-        <Route path="/newtrip" component={NewTrip} />
+        <PrivateRoute path="/newtrip" component={NewTrip} />
         <Route path="/trip/:id" component={EditTrip} />
         <Route path='/browse' component={Browse} />
         </UsersTripsContext.Provider>
