@@ -42,10 +42,14 @@ const Signup = props => {
             <Field type="text" name="name" placeholder="Name (First, Last)" />
             {touched.name && errors.name && <p>{errors.name}</p>}
 
-            <Field type="text" name="username" placeholder="Username" />
+            <Field type="text" name="username" placeholder="Create Username" />
             {touched.username && errors.username && <p>{errors.username}</p>}
 
-            <Field type="password" name="password" placeholder="password" />
+            <Field
+              type="password"
+              name="password"
+              placeholder="Create Password"
+            />
             {touched.password && errors.password && <p>{errors.password}</p>}
 
             {/* <Field
