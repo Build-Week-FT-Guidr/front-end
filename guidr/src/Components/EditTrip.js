@@ -1,19 +1,25 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
+import AllTripsContext from '../contexts/AllTripsContext';
 
-const EditTrip = () => {
-    const [trip, setTrip] = useState({isPrivate: false, isProfessional: true})
 
+const EditTrip = (props) => {
+    const [trip, setTrip] = useState({})
+    const allTrips = useContext(AllTripsContext)
+
+    console.log(allTrips, 'all trips in edit.js')
+
+
+    // const tripToEdit = allTrips.filter(trip => trip.id === parseInt(props.match.params.id))
     useEffect(() => {
         axiosWithAuth()
-        .get('users/1/trips/') 
-        .then(res => {
-            console.log(res, 'trip')
-            setTrip(res.data[0])
-            //could eventually set the trip fields to state and populate them
-        })
-    }, [])
-    
+        .get(`/trips/${props.match.params.id}`)
+        .then(res => setTrip(res.data))
+        .catch(err => console.log(err))
+    },[])
+
+
+
     const handleChanges = e => {
         setTrip({
             ...trip,
@@ -113,7 +119,7 @@ const EditTrip = () => {
                 placeholder='trip type'
                 type="text"
                 name="trip type"
-                value={trip.type}
+                value={trip.tripType}
                 onChange={handleChanges}   
             />
             <button onClick={submitChanges}>Submit changes</button>

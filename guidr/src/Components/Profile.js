@@ -5,13 +5,14 @@ import GuidePic from "./Assets/images/Guide.png";
 import UsersContext from "../contexts/UserContext";
 import UsersTripsContext from "../contexts/UsersTripsContext";
 import axiosWithAuth from "../utils/axiosWithAuth";
+import AllTripsContext from "../contexts/AllTripsContext";
 const Profile = (props) => {
   console.log(props.match.params.id)
   
   // Set state for the search query and the data so that it can be re-render on useeffect change
   const [searchQuery, setSearchQuery] = useState("");
-  const [trips, setTrips] = useState([]);
 
+  const allTrips = useContext(AllTripsContext);
   const users = useContext(UsersContext)
   const [user, setUser] = useState({})
 
@@ -24,15 +25,9 @@ const Profile = (props) => {
     })
   }, [])
 
-  useEffect(() => {
-    axiosWithAuth()
-    .get(`/users/${props.match.params.id}/trips`)
-    .then(res => {
-      console.log(res, 'user trips array')
-      setTrips(res.data)
-    })
-  }, [])
-
+const stringId = parseInt(props.match.params.id)
+const usersTrips = allTrips.filter(trip => trip.user_id === stringId)
+console.log(usersTrips, 'userstrips')
 
 
 
@@ -78,14 +73,18 @@ const Profile = (props) => {
       <div className="trips-container">
         {/* map through trips in here */}
 
-        {trips.map(item => {
+        {usersTrips.map(item => {
+          const tripToEdit = item;
+          console.log(tripToEdit, 'trip to edit')
           return (
-            <Link to="/trip">
+            <Link to={`/trip/${item.id}`}>
               <div className="trip-card" key={item.id}>
                 <h4>{item.title}</h4>
                 <p>{item.description}</p>
                 <p>{item.date}</p>
                 <p>distance: {item.distance}</p>
+                <button>Edit Trip</button>
+                <button>Delete Trip</button>
               </div>
             </Link>
           );

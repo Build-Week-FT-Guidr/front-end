@@ -40,6 +40,7 @@ const NewTrip = props => {
           axiosWithAuth()
           .post(`users/${localStorage.getItem('id')}/trips`, {
             title: values.title,
+            id: Date.now(),
             image: "img",
             description: values.description,
             isPrivate: false,

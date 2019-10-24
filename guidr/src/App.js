@@ -17,11 +17,13 @@ import ThankYou from "./Components/ThankYou";
 
 import UserContext from "./contexts/UserContext";
 import UsersTripsContext from "./contexts/UsersTripsContext";
+import AllTripsContext from './contexts/AllTripsContext';
 import PrivateRoute from "./Components/PrivateRoute";
 
 function App() {
   const [users, setUsers] = useState([]);
   const [userTrips, setUserTrips] = useState([]);
+  const [allTrips, setAllTrips] = useState([])
 
   useEffect(() => {
     axiosWithAuth()
@@ -41,10 +43,19 @@ function App() {
       .catch(err => console.log(err));
   }, []);
 
+  useEffect(() => {
+    axiosWithAuth()
+    .get(`/trips`)
+    .then(res => {
+      setAllTrips(res.data)
+    })
+  }, [])
+
   return (
     <div className="App">
       <Route path="/" component={NavigationLinks} />
 
+    <AllTripsContext.Provider value={allTrips}>
       <UserContext.Provider value={users}>
         <UsersTripsContext.Provider value={userTrips}>
           <Route exact path="/" component={Home} />
@@ -58,6 +69,7 @@ function App() {
           <Route path="/thankyou" component={ThankYou} />
         </UsersTripsContext.Provider>
       </UserContext.Provider>
+   </AllTripsContext.Provider>  
 
       <Footer />
     </div>
