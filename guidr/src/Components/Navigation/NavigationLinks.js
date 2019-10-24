@@ -4,6 +4,15 @@ import { Link } from "react-router-dom";
 const NavigationLinks = (props) => {
   const id = localStorage.getItem('id')
   console.log(props)
+
+  const logOut = () => {
+    if (id) {
+      if (window.confirm('Are you sure you want to log out?')) {
+        props.history.push('/');
+       localStorage.clear();
+     }
+  } 
+}
   
   return (
     <div className="navigation-links">
@@ -15,6 +24,7 @@ const NavigationLinks = (props) => {
         <Link to="login">Login</Link>
         <Link to="signup">Sign Up</Link>
         <Link to={`profile/${id}`}>My Profile</Link>
+        <Link onClick={logOut}>Log Out</Link>
       </div>
     </div>
   );

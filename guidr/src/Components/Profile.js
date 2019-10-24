@@ -13,26 +13,25 @@ const Profile = (props) => {
   const [trips, setTrips] = useState([]);
 
   const users = useContext(UsersContext)
-  const [profile, setProfile] = useState({})
+  const [user, setUser] = useState({})
 
   useEffect(() => {
     axiosWithAuth()
-    .get(`/users/${props.match.params.id}`)
+    .get(`/users/${props.match.params.id}/profile`)
     .then(res => {
-      console.log(res)
-      setProfile(res.data)
+      console.log(res, 'PROFILE DATA')
+   
     })
   }, [])
+
   useEffect(() => {
     axiosWithAuth()
     .get(`/users/${props.match.params.id}/trips`)
     .then(res => {
       console.log(res, 'user trips array')
-      setTrips(res.data)
+      // setTrips(res.data)
     })
   }, [])
-
-
 
 
 
@@ -55,7 +54,7 @@ const Profile = (props) => {
           <img src={GuidePic} alt="Guide Name" />
         </div>
         <div className="guide-info-half">
-          <h3 className="profile-name">{profile.username}</h3>
+          {/* <h3 className="profile-name">{user.username}</h3> */}
           <h4 className="profile-title">title</h4>
           <p className="tagline">Profile Tagline</p>
           <h4 className="profile-specialty">specialty</h4>
