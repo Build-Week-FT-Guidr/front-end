@@ -6,6 +6,7 @@ import UsersContext from "../contexts/UserContext";
 import UsersTripsContext from "../contexts/UsersTripsContext";
 import axiosWithAuth from "../utils/axiosWithAuth";
 const Profile = (props) => {
+  console.log(props.match.params.id)
   
   // Set state for the search query and the data so that it can be re-render on useeffect change
   const [searchQuery, setSearchQuery] = useState("");
@@ -13,13 +14,21 @@ const Profile = (props) => {
 
   const users = useContext(UsersContext)
   const [profile, setProfile] = useState({})
+
+  useEffect(() => {
+    axiosWithAuth()
+    .get(`/users/${props.match.params.id}`)
+    .then(res => {
+      console.log(res)
+      setProfile(res.data)
+    })
+  }, [])
   useEffect(() => {
     axiosWithAuth()
     .get(`/users/${props.match.params.id}/trips`)
     .then(res => {
       console.log(res, 'user trips array')
       setTrips(res.data)
-      setProfile(res.data[0])
     })
   }, [])
 

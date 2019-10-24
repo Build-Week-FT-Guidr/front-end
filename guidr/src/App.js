@@ -29,7 +29,6 @@ function App() {
     axiosWithAuth()
     .get('/users')
     .then(res => {
-      console.log(res)
       setUsers(res.data)
     })
     .catch(err => console.log(err))
@@ -39,7 +38,6 @@ function App() {
     axiosWithAuth()
     .get('/users/1/trips')
     .then(res => {
-      console.log(res)
       setUserTrips(res.data)
     })
     .catch(err => console.log(err))
