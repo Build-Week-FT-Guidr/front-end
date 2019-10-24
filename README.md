@@ -36,3 +36,17 @@ _Guidr is a platform that helps backcountry guides of all types log their privat
   * They can add a new trip
 * A trip details page
   * Display more in-depth trip information
+
+# Frameworks - Libraries
+## What 3rd party  frameworks/libraries are you considering using?
+* Formik / Yup
+* Sass
+* React
+* Node
+* SQL / PostGress
+* Express
+
+# Target Audience
+## Who is your target audience?
+* People who travel a lot, or do outdoor activities (hiking, biking, camping, etc)
+* Guides - national parks, government contracts
