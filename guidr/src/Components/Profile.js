@@ -40,13 +40,6 @@ const Profile = props => {
     setSearchQuery(event.target.value);
   };
 
-  // useEffect(() => {
-  //   const trips = dummyTrips.filter(trip =>
-  //     trip.title.toLowerCase().includes(searchQuery.toLowerCase())
-  //   );
-  //   setTripData(trips);
-  // }, [searchQuery]);
-
   return (
     <>
       <section className="profile-header">
