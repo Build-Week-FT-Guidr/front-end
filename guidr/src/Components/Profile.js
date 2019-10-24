@@ -5,27 +5,25 @@ import GuidePic from "./Assets/images/Guide.png";
 import UsersContext from "../contexts/UserContext";
 import UsersTripsContext from "../contexts/UsersTripsContext";
 import axiosWithAuth from "../utils/axiosWithAuth";
-const Profile = () => {
+const Profile = (props) => {
   
   // Set state for the search query and the data so that it can be re-render on useeffect change
   const [searchQuery, setSearchQuery] = useState("");
-  const [tripData, setTripData] = useState([]);
+  const [trips, setTrips] = useState([]);
 
   const users = useContext(UsersContext)
   const [profile, setProfile] = useState({})
   useEffect(() => {
     axiosWithAuth()
-    .get(`/users/1/trips`)
+    .get(`/users/${props.match.params.id}/trips`)
     .then(res => {
-      console.log(res, 'user trips')
-      setProfile({
-        id: res.data[0].id,
-        username: res.data[0].username
-      })
+      console.log(res, 'user trips array')
+      setTrips(res.data)
+      setProfile(res.data[0])
     })
   }, [])
 
-  console.log(profile, 'profile')
+
 
 
 
@@ -72,7 +70,7 @@ const Profile = () => {
       <div className="trips-container">
         {/* map through trips in here */}
 
-        {tripData.map(item => {
+        {trips.map(item => {
           return (
             <Link to="/trip">
               <div className="trip-card" key={item.id}>

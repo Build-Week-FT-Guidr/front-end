@@ -27,12 +27,13 @@ const Signup = props => {
         })}
         onSubmit={values => {
           console.log(values);
-          axios
+          axiosWithAuth()
             .post(`/users/register`, values)
             .then(res => {
               console.log(res, "SIGNUP");
               localStorage.setItem("token", res.data.token);
-              history.push("/profile");
+              localStorage.setItem('id', res.data.id)
+              history.push(`/profile/${res.data.id}`)
             })
             .catch(err => console.log(err));
         }}
