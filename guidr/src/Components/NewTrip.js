@@ -51,6 +51,7 @@ const NewTrip = props => {
           })
           .then(res => {
             console.log(res)
+            props.history.push(`/profile/${localStorage.getItem('id')}`)
           })
           .catch(err => {
             console.log('no new trip', err)
