@@ -5,36 +5,36 @@ import GuidePic from "./Assets/images/Guide.png";
 import UsersContext from "../contexts/UserContext";
 import UsersTripsContext from "../contexts/UsersTripsContext";
 import axiosWithAuth from "../utils/axiosWithAuth";
-const Profile = (props) => {
-  console.log(props.match.params.id)
-  
+const Profile = props => {
+  console.log(props.match.params.id);
+
   // Set state for the search query and the data so that it can be re-render on useeffect change
   const [searchQuery, setSearchQuery] = useState("");
   const [trips, setTrips] = useState([]);
 
-  const users = useContext(UsersContext)
-  const [user, setUser] = useState({})
+  const users = useContext(UsersContext);
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     axiosWithAuth()
-    .get(`/users/${props.match.params.id}`)
-    .then(res => {
-      console.log(res, 'PROFILE DATA')
-      setUser(res.data)
-    })
-  }, [])
+      .get(`/users/${props.match.params.id}`)
+      .then(res => {
+        console.log(res, "PROFILE DATA");
+        setUser(res.data);
+      });
+  }, []);
 
   useEffect(() => {
     axiosWithAuth()
-    .get(`/users/${props.match.params.id}/trips`)
-    .then(res => {
-      console.log(res, 'user trips array')
-      setTrips(res.data)
-    })
-  }, [])
-
-
-
+      .get(`/users/${props.match.params.id}/trips`)
+      .then(res => {
+        console.log(res, "user trips array");
+        const filterTrips = res.data.filter(trip =>
+          trip.title.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+        setTrips(filterTrips);
+      });
+  }, [searchQuery]);
 
   const handleChange = event => {
     setSearchQuery(event.target.value);
@@ -95,7 +95,6 @@ const Profile = (props) => {
   );
 };
 export default Profile;
-
 
 // const dummyTrips = [
 //   {
