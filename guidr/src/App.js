@@ -19,6 +19,7 @@ import UserContext from "./contexts/UserContext";
 import UsersTripsContext from "./contexts/UsersTripsContext";
 import AllTripsContext from './contexts/AllTripsContext';
 import PrivateRoute from "./Components/PrivateRoute";
+import CompleteProfile from "./Components/CompleteProfile";
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -65,6 +66,7 @@ function App() {
           <Route path="/trip" component={TripCard} />
           <PrivateRoute path="/newtrip" component={NewTrip} />
           <Route path="/trip/:id" component={EditTrip} />
+          <Route path='/completeprofile/:id' component={CompleteProfile} />
           <Route path="/browse" component={Browse} />
           <Route path="/thankyou" component={ThankYou} />
         </UsersTripsContext.Provider>

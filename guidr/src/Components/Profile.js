@@ -15,7 +15,9 @@ const Profile = (props) => {
   const {allTrips} = useContext(AllTripsContext);
   const {setAllTrips} = useContext(AllTripsContext)
   const users = useContext(UsersContext)
+  console.log(users, 'users context')
   const [user, setUser] = useState({})
+  const [profileToEdit, setProfileToEdit] = useState({})
 
 const stringId = parseInt(props.match.params.id)
 const usersTrips = allTrips.filter(trip => trip.user_id === stringId)
@@ -29,6 +31,30 @@ useEffect(() => {
     setUser(res.data)
   })
 }, [users])
+
+useEffect(() => {
+  axiosWithAuth()
+  .get(`/users/${props.match.params.id}/profile`)
+  .then(res => {
+    console.log(res, 'profile to edit response')
+    if (res.data[0]) {
+      setProfileToEdit(res.data[0])
+    } else {
+      setProfileToEdit({
+        title: '',
+        tagline: '',
+        guideSpecialty: '',
+        age: '',
+        yearsExperience: ''
+      })
+    }
+  })
+  .catch(err => {
+    console.log(err)
+  })
+}, [])
+
+console.log(profileToEdit, 'profileToEdit')
 
 
   
@@ -52,16 +78,19 @@ useEffect(() => {
         </div>
         <div className="guide-info-half">
           <h3 className="profile-name">{user.username}</h3>
-          <h4 className="profile-title">title</h4>
-          <p className="tagline">Profile Tagline</p>
-          <h4 className="profile-specialty">specialty</h4>
-          <p>___ years of experience</p>
+          <h4 className="profile-title">{profileToEdit.title}</h4>
+          <p className="tagline">{profileToEdit.tagline}</p>
+          <h4 className="profile-specialty">{profileToEdit.guideSpecialty}</h4>
+          <p>{`${profileToEdit.yearsExperience} years experience`}</p>
           <div className="button-profile-container">
             <Link to="/newtrip">
               <button>Add Trip</button>
             </Link>
             <Link to="/editguide">
               <button>Edit Guide</button>
+            </Link>
+            <Link to={`/completeprofile/${props.match.params.id}`}>
+              <button>Complete Profile</button>
             </Link>
           </div>
         </div>
