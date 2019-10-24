@@ -2,9 +2,12 @@ import React, {useContext} from "react";
 import { Formik, Form, Field, Text } from "formik";
 import * as Yup from "yup";
 import axiosWithAuth from "../utils/axiosWithAuth";
+import AllTripsContext from '../contexts/AllTripsContext';
 
 const NewTrip = props => {
   const { history } = props;
+  const {allTrips} = useContext(AllTripsContext);
+  const {setAllTrips} = useContext(AllTripsContext)
   // Returns the form component and the error messages when the input field is touched and left empty, or just left empty
   return (
     <section>
@@ -53,6 +56,12 @@ const NewTrip = props => {
           .then(res => {
             console.log(res)
             props.history.push(`/profile/${localStorage.getItem('id')}`)
+            axiosWithAuth()
+                .get(`/trips`)
+                .then(res => {
+                  setAllTrips(res.data)
+                })
+                .catch(err => console.log(err))
           })
           .catch(err => {
             console.log('no new trip', err)

@@ -5,7 +5,8 @@ import AllTripsContext from '../contexts/AllTripsContext';
 
 const EditTrip = (props) => {
     const [trip, setTrip] = useState({})
-    const allTrips = useContext(AllTripsContext)
+    const {allTrips} = useContext(AllTripsContext);
+    const {setAllTrips} = useContext(AllTripsContext)
 
 
 
@@ -61,7 +62,15 @@ const EditTrip = (props) => {
         e.preventDefault()
         axiosWithAuth()
         .put(`/trips/${props.match.params.id}`, trip)
-        .then(res => props.history.push(`/profile/${trip.user_id}`))
+        .then(res => {
+            props.history.push(`/profile/${trip.user_id}`)
+            axiosWithAuth()
+                .get(`/trips`)
+                .then(res => {
+                  setAllTrips(res.data)
+                })
+                .catch(err => console.log(err))
+        })
         .catch(err => console.log(err))
     }
     return(
