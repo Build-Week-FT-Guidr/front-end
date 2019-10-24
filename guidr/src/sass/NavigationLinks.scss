@@ -7,7 +7,7 @@
   background-color: #228b22;
 
   @media only screen and (max-width: 550px) {
-    flex-direction: column;
+    justify-content: center;
   }
 
   .links-container {
