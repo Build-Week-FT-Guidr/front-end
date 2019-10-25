@@ -15,19 +15,17 @@ const Profile = (props) => {
   const {allTrips} = useContext(AllTripsContext);
   const {setAllTrips} = useContext(AllTripsContext)
   const users = useContext(UsersContext)
-  console.log(users, 'users context')
   const [user, setUser] = useState({})
   const [profileToEdit, setProfileToEdit] = useState({})
 
 const stringId = parseInt(props.match.params.id)
 const usersTrips = allTrips.filter(trip => trip.user_id === stringId)
-console.log(usersTrips, 'userstrips')
+
 
 useEffect(() => {
   axiosWithAuth()
   .get(`/users/${props.match.params.id}`)
   .then(res => {
-    console.log(res, 'PROFILE DATA')
     setUser(res.data)
   })
 }, [users])
@@ -36,7 +34,6 @@ useEffect(() => {
   axiosWithAuth()
   .get(`/users/${props.match.params.id}/profile`)
   .then(res => {
-    console.log(res, 'profile to edit response')
     if (res.data[0]) {
       setProfileToEdit(res.data[0])
     } else {
@@ -54,7 +51,6 @@ useEffect(() => {
   })
 }, [])
 
-console.log(profileToEdit, 'profileToEdit')
 
 
   

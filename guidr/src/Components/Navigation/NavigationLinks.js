@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 const NavigationLinks = (props) => {
   const id = localStorage.getItem('id')
-  console.log(props)
 
   const logOut = () => {
     if (id) {

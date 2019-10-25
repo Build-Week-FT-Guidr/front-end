@@ -9,7 +9,6 @@ const Browse = () => {
         axios
         .get(`https://guidrinfo.herokuapp.com/profiles`)
         .then(res => {
-            console.log(res)
             setUsers(res.data)
         })
         .catch(err => {

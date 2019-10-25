@@ -1,7 +1,6 @@
 import React from 'react';
 
 const ProfileCards = props => {
-    console.log(props, 'usercard props')
     return (
         <div className='profile-card'>
         <h1>{props.item.title}</h1>
