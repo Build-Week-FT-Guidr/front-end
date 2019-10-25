@@ -1,19 +1,25 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
+import AllTripsContext from '../contexts/AllTripsContext';
 
-const EditTrip = () => {
-    const [trip, setTrip] = useState({isPrivate: false, isProfessional: true})
 
+const EditTrip = (props) => {
+    const [trip, setTrip] = useState({})
+    const {allTrips} = useContext(AllTripsContext);
+    const {setAllTrips} = useContext(AllTripsContext)
+
+
+
+    // const tripToEdit = allTrips.filter(trip => trip.id === parseInt(props.match.params.id))
     useEffect(() => {
         axiosWithAuth()
-        .get('users/1/trips/') 
-        .then(res => {
-            console.log(res, 'trip')
-            setTrip(res.data[0])
-            //could eventually set the trip fields to state and populate them
-        })
-    }, [])
-    
+        .get(`/trips/${props.match.params.id}`)
+        .then(res => setTrip(res.data))
+        .catch(err => console.log(err))
+    },[])
+
+
+
     const handleChanges = e => {
         setTrip({
             ...trip,
@@ -53,7 +59,19 @@ const EditTrip = () => {
     };
 
     const submitChanges = e => {
-        e.preventDefault();
+        e.preventDefault()
+        axiosWithAuth()
+        .put(`/trips/${props.match.params.id}`, trip)
+        .then(res => {
+            props.history.push(`/profile/${trip.user_id}`)
+            axiosWithAuth()
+                .get(`/trips`)
+                .then(res => {
+                  setAllTrips(res.data)
+                })
+                .catch(err => console.log(err))
+        })
+        .catch(err => console.log(err))
     }
     return(
         <>
@@ -112,8 +130,8 @@ const EditTrip = () => {
             <input
                 placeholder='trip type'
                 type="text"
-                name="trip type"
-                value={trip.type}
+                name="tripType"
+                value={trip.tripType}
                 onChange={handleChanges}   
             />
             <button onClick={submitChanges}>Submit changes</button>

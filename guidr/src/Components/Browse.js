@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
-import UserCard from './UserCard';
-import axiosWithAuth from '../utils/axiosWithAuth';
+import ProfileCards from './ProfileCards';
+import axios from 'axios';
 
 const Browse = () => {
     const [users, setUsers] = useState([])
     useEffect(() => {
-        axiosWithAuth()
-        .get(`https://guidr-bw.herokuapp.com/users/`)
+        axios
+        .get(`https://guidrinfo.herokuapp.com/profiles`)
         .then(res => {
-            console.log(res)
             setUsers(res.data)
         })
         .catch(err => {
@@ -21,7 +20,7 @@ const Browse = () => {
         <div className='browse-container'>
             {
                 users.map(item => (
-                    <UserCard item={item}/>
+                    <ProfileCards item={item}/>
                 ))
             }
         </div>

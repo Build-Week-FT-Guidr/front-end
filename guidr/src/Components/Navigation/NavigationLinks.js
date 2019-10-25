@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 const NavigationLinks = (props) => {
   const id = localStorage.getItem('id')
-  console.log(props)
 
   const logOut = () => {
     if (id) {
@@ -21,6 +20,7 @@ const NavigationLinks = (props) => {
       </h1>
       <div className="links-container">
         <Link to="">Home</Link>
+        <Link to='browse'>Browse</Link>
         <Link to="login">Login</Link>
         <Link to="signup">Sign Up</Link>
         <Link to={`profile/${id}`}>My Profile</Link>

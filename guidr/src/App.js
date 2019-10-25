@@ -17,11 +17,16 @@ import ThankYou from "./Components/ThankYou";
 
 import UserContext from "./contexts/UserContext";
 import UsersTripsContext from "./contexts/UsersTripsContext";
+import AllTripsContext from './contexts/AllTripsContext';
+import ProfileContext from './contexts/ProfileContext';
 import PrivateRoute from "./Components/PrivateRoute";
+import CompleteProfile from "./Components/CompleteProfile";
 
 function App() {
   const [users, setUsers] = useState([]);
   const [userTrips, setUserTrips] = useState([]);
+  const [allTrips, setAllTrips] = useState([])
+  const [profileToEdit, setProfileToEdit] = useState({})
 
   useEffect(() => {
     axiosWithAuth()
@@ -41,10 +46,19 @@ function App() {
       .catch(err => console.log(err));
   }, []);
 
+  useEffect(() => {
+    axiosWithAuth()
+    .get(`/trips`)
+    .then(res => {
+      setAllTrips(res.data)
+    })
+  }, [])
+
   return (
     <div className="App">
       <Route path="/" component={NavigationLinks} />
-
+    <ProfileContext.Provider value={{profileToEdit, setProfileToEdit}}>
+    <AllTripsContext.Provider value={{allTrips, setAllTrips}}>
       <UserContext.Provider value={users}>
         <UsersTripsContext.Provider value={userTrips}>
           <Route exact path="/" component={Home} />
@@ -54,10 +68,13 @@ function App() {
           <Route path="/trip" component={TripCard} />
           <PrivateRoute path="/newtrip" component={NewTrip} />
           <Route path="/trip/:id" component={EditTrip} />
+          <Route path='/completeprofile/:id' component={CompleteProfile} />
           <Route path="/browse" component={Browse} />
           <Route path="/thankyou" component={ThankYou} />
         </UsersTripsContext.Provider>
       </UserContext.Provider>
+   </AllTripsContext.Provider>  
+   </ProfileContext.Provider>
 
       <Footer />
     </div>
