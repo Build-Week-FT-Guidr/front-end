@@ -36,10 +36,8 @@
   padding: 3% 0;
   width: 100%;
 
-  
-
   a {
-    color: #000;
+    color: #fff;
     text-decoration: none;
     padding: 0;
     margin: 0 3%;
@@ -48,14 +46,19 @@
       align-items: center;
       padding: 1.2rem;
       font-size: 1.5rem;
-      border: 1px solid #ccc;
+      border: 1px solid #98473e;
       border-radius: 10px;
       width: 100%;
       margin: 0 5%;
+      background-color: #98473e;
+      color: #fff;
+      cursor: pointer;
 
       &:hover {
-        box-shadow: 1px 1px 10px snow;
-        cursor: pointer;
+        background-color: #88958d;
+        color: #fff;
+        border: 1px solid #88958d;
+        box-shadow: 1px 3px 10px #152614;
       }
     }
   }
@@ -72,6 +75,5 @@
         background-color: snow;
       }
     }
-    
   }
 }
