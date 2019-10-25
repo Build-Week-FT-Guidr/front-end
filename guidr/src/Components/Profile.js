@@ -59,15 +59,15 @@ console.log(profileToEdit, 'profileToEdit')
 
   
 
-  const handleChange = event => {
-    setSearchQuery(event.target.value);
-  };
+  // const handleChange = event => {
+  //   setSearchQuery(event.target.value);
+  // };
 
   // useEffect(() => {
-  //   const trips = dummyTrips.filter(trip =>
+  //   const trips = usersTrips.filter(trip =>
   //     trip.title.toLowerCase().includes(searchQuery.toLowerCase())
   //   );
-  //   setTripData(trips);
+  //   setUserTrips(trips);
   // }, [searchQuery]);
 
   return (
@@ -93,11 +93,11 @@ console.log(profileToEdit, 'profileToEdit')
         </div>
       </section>
       <h3 className="trips-section-title">Trips</h3>
-      <SearchForm
+      {/* <SearchForm
         placeholder="Search Trips..."
         value={searchQuery}
         onChange={handleChange}
-      />
+      /> */}
       <div className="trips-container">
         {/* map through trips in here */}
 
