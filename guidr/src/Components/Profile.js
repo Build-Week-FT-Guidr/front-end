@@ -6,54 +6,50 @@ import UsersContext from "../contexts/UserContext";
 import UsersTripsContext from "../contexts/UsersTripsContext";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import AllTripsContext from "../contexts/AllTripsContext";
-const Profile = (props) => {
-  console.log(props.match.params.id)
-  
+
+const Profile = props => {
+  console.log(props.match.params.id);
+
   // Set state for the search query and the data so that it can be re-render on useeffect change
   const [searchQuery, setSearchQuery] = useState("");
 
-  const {allTrips} = useContext(AllTripsContext);
-  const {setAllTrips} = useContext(AllTripsContext)
-  const users = useContext(UsersContext)
-  const [user, setUser] = useState({})
-  const [profileToEdit, setProfileToEdit] = useState({})
+  const { allTrips } = useContext(AllTripsContext);
+  const { setAllTrips } = useContext(AllTripsContext);
+  const users = useContext(UsersContext);
+  const [user, setUser] = useState({});
+  const [profileToEdit, setProfileToEdit] = useState({});
 
-const stringId = parseInt(props.match.params.id)
-const usersTrips = allTrips.filter(trip => trip.user_id === stringId)
+  const stringId = parseInt(props.match.params.id);
+  const usersTrips = allTrips.filter(trip => trip.user_id === stringId);
 
+  useEffect(() => {
+    axiosWithAuth()
+      .get(`/users/${props.match.params.id}`)
+      .then(res => {
+        setUser(res.data);
+      });
+  }, [users]);
 
-useEffect(() => {
-  axiosWithAuth()
-  .get(`/users/${props.match.params.id}`)
-  .then(res => {
-    setUser(res.data)
-  })
-}, [users])
-
-useEffect(() => {
-  axiosWithAuth()
-  .get(`/users/${props.match.params.id}/profile`)
-  .then(res => {
-    if (res.data[0]) {
-      setProfileToEdit(res.data[0])
-    } else {
-      setProfileToEdit({
-        title: '',
-        tagline: '',
-        guideSpecialty: '',
-        age: '',
-        yearsExperience: ''
+  useEffect(() => {
+    axiosWithAuth()
+      .get(`/users/${props.match.params.id}/profile`)
+      .then(res => {
+        if (res.data[0]) {
+          setProfileToEdit(res.data[0]);
+        } else {
+          setProfileToEdit({
+            title: "",
+            tagline: "",
+            guideSpecialty: "",
+            age: "",
+            yearsExperience: ""
+          });
+        }
       })
-    }
-  })
-  .catch(err => {
-    console.log(err)
-  })
-}, [])
-
-
-
-  
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
 
   // const handleChange = event => {
   //   setSearchQuery(event.target.value);
@@ -100,19 +96,19 @@ useEffect(() => {
         {usersTrips.map(item => {
           const deleteTrip = () => {
             axiosWithAuth()
-            .delete(`/trips/${item.id}`)
-            .then(res => {
-              axiosWithAuth()
-                .get(`/trips`)
-                .then(res => {
-                  setAllTrips(res.data)
-                })
-                .catch(err => console.log(err))
+              .delete(`/trips/${item.id}`)
+              .then(res => {
+                axiosWithAuth()
+                  .get(`/trips`)
+                  .then(res => {
+                    setAllTrips(res.data);
+                  })
+                  .catch(err => console.log(err));
 
-            //end outer then
-          })
-            .catch(err => console.log(err))
-          }
+                //end outer then
+              })
+              .catch(err => console.log(err));
+          };
           return (
             <div className="trip-card" key={item.id}>
               <Link to={`/trip/${item.id}`}>
@@ -121,9 +117,13 @@ useEffect(() => {
                 <p>{item.date}</p>
                 <p>distance: {item.distance}</p>
                 <p>{item.tripType}</p>
-                <button>Edit Trip</button>
-            </Link>
-            <button onClick={deleteTrip}>Delete Trip</button>
+              </Link>
+              <div className="trip-card-button-container">
+                <Link to={`/trip/${item.id}`}>
+                  <button>Edit Trip</button>
+                </Link>
+                <button onClick={deleteTrip}>Delete Trip</button>
+              </div>
             </div>
           );
         })}
@@ -132,4 +132,3 @@ useEffect(() => {
   );
 };
 export default Profile;
-
