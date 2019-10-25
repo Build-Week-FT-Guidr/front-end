@@ -124,6 +124,7 @@ console.log(profileToEdit, 'profileToEdit')
                 <p>{item.description}</p>
                 <p>{item.date}</p>
                 <p>distance: {item.distance}</p>
+                <p>{item.tripType}</p>
                 <button>Edit Trip</button>
             </Link>
             <button onClick={deleteTrip}>Delete Trip</button>

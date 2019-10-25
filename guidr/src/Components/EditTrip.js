@@ -130,7 +130,7 @@ const EditTrip = (props) => {
             <input
                 placeholder='trip type'
                 type="text"
-                name="trip type"
+                name="tripType"
                 value={trip.tripType}
                 onChange={handleChanges}   
             />
