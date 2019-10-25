@@ -18,6 +18,7 @@ import ThankYou from "./Components/ThankYou";
 import UserContext from "./contexts/UserContext";
 import UsersTripsContext from "./contexts/UsersTripsContext";
 import AllTripsContext from './contexts/AllTripsContext';
+import ProfileContext from './contexts/ProfileContext';
 import PrivateRoute from "./Components/PrivateRoute";
 import CompleteProfile from "./Components/CompleteProfile";
 
@@ -25,6 +26,7 @@ function App() {
   const [users, setUsers] = useState([]);
   const [userTrips, setUserTrips] = useState([]);
   const [allTrips, setAllTrips] = useState([])
+  const [profileToEdit, setProfileToEdit] = useState({})
 
   useEffect(() => {
     axiosWithAuth()
@@ -55,7 +57,7 @@ function App() {
   return (
     <div className="App">
       <Route path="/" component={NavigationLinks} />
-
+    <ProfileContext.Provider value={{profileToEdit, setProfileToEdit}}>
     <AllTripsContext.Provider value={{allTrips, setAllTrips}}>
       <UserContext.Provider value={users}>
         <UsersTripsContext.Provider value={userTrips}>
@@ -72,6 +74,7 @@ function App() {
         </UsersTripsContext.Provider>
       </UserContext.Provider>
    </AllTripsContext.Provider>  
+   </ProfileContext.Provider>
 
       <Footer />
     </div>

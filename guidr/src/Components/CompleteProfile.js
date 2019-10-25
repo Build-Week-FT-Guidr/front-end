@@ -1,13 +1,15 @@
 import React, {useState, useEffect, useContext} from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import AllTripsContext from '../contexts/AllTripsContext';
+import ProfileContext from '../contexts/ProfileContext';
 
 
 const CompleteProfile = (props) => {
     const [trip, setTrip] = useState({})
     const {allTrips} = useContext(AllTripsContext);
     const {setAllTrips} = useContext(AllTripsContext)
-    const [profileToEdit, setProfileToEdit] = useState({})
+    const {profileToEdit} = useContext(ProfileContext)
+    const {setProfileToEdit} = useContext(ProfileContext)
 
     
 
@@ -25,7 +27,12 @@ const CompleteProfile = (props) => {
         axiosWithAuth()
         .post(`/users/${props.match.params.id}/profile`, profileToEdit)
         .then(res => {
-            console.log(res)
+            props.history.push(`/profile/${props.match.params.id}`)
+            axiosWithAuth()
+            .get(`/profile/${props.match.params.id}`)
+            .then(res => {
+                setProfileToEdit(res.data)
+            })
         })
         .catch(err => console.log(err))
     }
