@@ -21,6 +21,7 @@ const NavigationLinks = (props) => {
       </h1>
       <div className="links-container">
         <Link to="">Home</Link>
+        <Link to='browse'>Browse</Link>
         <Link to="login">Login</Link>
         <Link to="signup">Sign Up</Link>
         <Link to={`profile/${id}`}>My Profile</Link>

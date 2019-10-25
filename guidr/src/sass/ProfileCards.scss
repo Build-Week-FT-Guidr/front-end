@@ -1,0 +1,14 @@
+.browse-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .profile-card {
+        color:  #98473e;
+        width: 250px;
+        height: 250px;
+        padding: 20px;
+        margin: 40px;
+        border: 1px solid;
+
+    }
+}

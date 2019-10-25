@@ -86,9 +86,6 @@ console.log(profileToEdit, 'profileToEdit')
             <Link to="/newtrip">
               <button>Add Trip</button>
             </Link>
-            <Link to="/editguide">
-              <button>Edit Guide</button>
-            </Link>
             <Link to={`/completeprofile/${props.match.params.id}`}>
               <button>Complete Profile</button>
             </Link>
