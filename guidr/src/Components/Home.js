@@ -15,6 +15,9 @@ const Home = () => {
         <Link to="/signup">
           <button>Sign Up</button>
         </Link>
+        <Link id='browse-btn' to='/browse'>
+          <button>Browse</button>
+        </Link>
       </div>
     </div>
   );
