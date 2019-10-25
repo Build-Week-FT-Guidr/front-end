@@ -18,11 +18,9 @@ const Login = props => {
           password: Yup.string().required("Please enter user's password")
         })}
         onSubmit={values => {
-          console.log(values);
           axiosWithAuth()
             .post("/users/login", values)
             .then(res => {
-              console.log(res, 'LOGIN RESPONSE');
               localStorage.setItem("token", res.data.token);
               localStorage.setItem('id', res.data.user.id)
               history.push(`/profile/${res.data.user.id}`);
