@@ -117,9 +117,13 @@ const Profile = props => {
                 <p>{item.date}</p>
                 <p>distance: {item.distance}</p>
                 <p>{item.tripType}</p>
-                <button>Edit Trip</button>
               </Link>
-              <button onClick={deleteTrip}>Delete Trip</button>
+              <div className="trip-card-button-container">
+                <Link to={`/trip/${item.id}`}>
+                  <button>Edit Trip</button>
+                </Link>
+                <button onClick={deleteTrip}>Delete Trip</button>
+              </div>
             </div>
           );
         })}
